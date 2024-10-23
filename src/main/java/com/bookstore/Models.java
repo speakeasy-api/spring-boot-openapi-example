@@ -7,8 +7,9 @@ import java.util.List;
 
 public class Models {
 
-    @Schema(description = "Represents a publication in the store")
-    @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+    @Schema(description = "Represents a publication in the store", 
+        oneOf = {Book.class, Magazine.class})
+    @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", visible = true)
     @JsonSubTypes({
         @JsonSubTypes.Type(value = Book.class, name = "BOOK"),
         @JsonSubTypes.Type(value = Magazine.class, name = "MAGAZINE")
