@@ -5,7 +5,7 @@
 </a>
 </div>
 
-This example Spring Boot app demonstrates Speakeasy-recommended practices for generating clear OpenAPI specifications and SDKs.
+This example Spring Boot app demonstrates recommended practices for generating clear OpenAPI specifications and SDKs.
 
 ## Prerequisites
 
