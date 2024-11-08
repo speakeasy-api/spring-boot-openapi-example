@@ -48,7 +48,7 @@ public class OrdersController {
 
         // Calculate total price
         float totalPrice = order.getItems().stream()
-            .map(Publication::getPrice)
+            .map(item -> item.getPrice())
             .reduce(0f, Float::sum);
         order.setTotalPrice(totalPrice);
 
@@ -89,7 +89,7 @@ public class OrdersController {
     @Operation(summary = "Update order status", description = "Update the status of an existing order")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Order status updated successfully",
-                    content = @Content(schema = @Schema(implementation = Order.class))),
+                    content = @Content(schema = @Schema(implementation = Order.class), mediaType = "application/json")),
         @ApiResponse(responseCode = "404", description = "Order not found",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "400", description = "Invalid status",
