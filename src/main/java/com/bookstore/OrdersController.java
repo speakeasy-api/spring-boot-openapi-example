@@ -27,7 +27,7 @@ public class OrdersController {
     @Operation(summary = "Create a new order", description = "Create a new order for publications")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Order created successfully",
-                    content = @Content(schema = @Schema(implementation = Order.class))),
+                    content = @Content(schema = @Schema(implementation = Order.class), mediaType = "application/json")),
         @ApiResponse(responseCode = "400", description = "Invalid input",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
