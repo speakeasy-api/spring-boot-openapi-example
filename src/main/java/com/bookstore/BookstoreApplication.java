@@ -5,10 +5,12 @@ import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.servers.Server;
+import io.swagger.v3.oas.models.annotations.OpenAPI31;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@OpenAPI31
 @OpenAPIDefinition(
     info = @Info(
         title = "Book Store API",
