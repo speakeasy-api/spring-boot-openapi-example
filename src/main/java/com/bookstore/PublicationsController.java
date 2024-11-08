@@ -37,7 +37,7 @@ public class PublicationsController {
     @Operation(summary = "Get a publication by ID", description = "Retrieves a publication's details by its unique identifier")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Successful operation",
-                     content = @Content(schema = @Schema(implementation = Publication.class))),
+                     content = @Content(schema = @Schema(oneOf = {Book.class, Magazine.class}))),
         @ApiResponse(responseCode = "404", description = "Publication not found",
                      content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
@@ -52,10 +52,11 @@ public class PublicationsController {
         }
     }
 
-    @Operation(summary = "Create a new publication", description = "Add a new publication to the store")
+    @Operation(summary = "Create a new publication", description = "Add a new publication to the store", requestBody = 
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schema = @Schema(oneOf = {Book.class, Magazine.class}))))
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Successful operation",
-                     content = @Content(schema = @Schema(implementation = Publication.class))),
+                     content = @Content(schema = @Schema(oneOf = {Book.class, Magazine.class}))),
         @ApiResponse(responseCode = "400", description = "Invalid input",
                      content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
