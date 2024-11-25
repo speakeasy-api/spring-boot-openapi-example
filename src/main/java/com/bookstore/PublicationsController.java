@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,7 +24,7 @@ public class PublicationsController {
     @Operation(summary = "List all publications", description = "Get a list of all publications in the store")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Successful operation",
-                     content = @Content(schema = @Schema(implementation = Publication.class)))
+                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = PublicationListItem.class)))),
     })
     @GetMapping
     public ResponseEntity<List<Publication>> listPublications() {
@@ -37,7 +38,7 @@ public class PublicationsController {
     @Operation(summary = "Get a publication by ID", description = "Retrieves a publication's details by its unique identifier")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Successful operation",
-                     content = @Content(schema = @Schema(implementation = Publication.class))),
+                     content = @Content(schema = @Schema(oneOf = {Book.class, Magazine.class}))),
         @ApiResponse(responseCode = "404", description = "Publication not found",
                      content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
@@ -52,10 +53,11 @@ public class PublicationsController {
         }
     }
 
-    @Operation(summary = "Create a new publication", description = "Add a new publication to the store")
+    @Operation(summary = "Create a new publication", description = "Add a new publication to the store", requestBody = 
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schema = @Schema(oneOf = {Book.class, Magazine.class}))))
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Successful operation",
-                     content = @Content(schema = @Schema(implementation = Publication.class))),
+                     content = @Content(schema = @Schema(oneOf = {Book.class, Magazine.class}))),
         @ApiResponse(responseCode = "400", description = "Invalid input",
                      content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
