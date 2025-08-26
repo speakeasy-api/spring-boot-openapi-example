@@ -21,7 +21,7 @@ This example Spring Boot app demonstrates recommended practices for generating c
 
 ## Prerequisites
 
-You need to have Java and Maven installed on your system to run this project. If you don't have these installed, you can download them from [here](https://www.oracle.com/java/technologies/downloads/) and [here](https://maven.apache.org/download.cgi).
+You need to have Java and Maven installed on your system to run this project. If you don't have these installed, you can download them from [Oracle](https://www.oracle.com/java/technologies/downloads/) and [Maven](https://maven.apache.org/download.cgi).
 
 To generate an SDK, you'll also need the Speakeasy CLI installed, or use the Speakeasy dashboard.
 
